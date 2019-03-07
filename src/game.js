@@ -58,6 +58,11 @@ class Game {
   }
 
   update(deltaTime) {
+    // check for winner
+    if (this.scoreBoard.hasWinner()) {
+      this.gamestate = GAMESTATE.WINNER;
+    }
+
     // ignore update if game is not in play
     if (
       this.gamestate === GAMESTATE.PAUSED ||
@@ -107,7 +112,7 @@ class Game {
     }
     if (this.gamestate === GAMESTATE.WINNER) {
       ctx.rect(0, 0, this.gameWidth, this.gameHeight);
-      ctx.fillStyle = "rgba(0,0,0,1)";
+      ctx.fillStyle = "rgba(0,0,0,0.7)";
       ctx.fill();
 
       ctx.font = this.font;

@@ -2,8 +2,8 @@ class ScoreBoard {
   constructor(game) {
     this.game = game;
 
-    this.scoreLeftPlayer = 0; // save score state in game component???
-    this.scoreRightPlayer = 0; // save score state in game component???
+    this.scoreLeftPlayer = 9; // save score state in game component???
+    this.scoreRightPlayer = 9; // save score state in game component???
 
     this.fontSize = 60;
     this.fontType = "'Press Start 2P'";
@@ -20,6 +20,18 @@ class ScoreBoard {
     };
   }
 
+  hasWinner() {
+    if (
+      this.scoreLeftPlayer !== this.scoreRightPlayer &&
+      (this.scoreLeftPlayer >= 11 || this.scoreRightPlayer >= 11) &&
+      Math.abs(this.scoreLeftPlayer - this.scoreRightPlayer) > 1
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   addPointToLeftPlayer() {
     this.scoreLeftPlayer++;
   }
@@ -31,6 +43,7 @@ class ScoreBoard {
     //draw left score
     ctx.font = this.font;
     ctx.textAlign = "center";
+    ctx.fillStyle = "black";
     ctx.fillText(
       this.scoreLeftPlayer,
       this.positionLeft.x,
@@ -40,6 +53,7 @@ class ScoreBoard {
     // draw right score
     ctx.font = this.font;
     ctx.textAlign = "center";
+    ctx.fillStyle = "black";
     ctx.fillText(
       this.scoreRightPlayer,
       this.positionRight.x,
