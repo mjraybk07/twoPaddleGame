@@ -1,2 +1,0 @@
-# twoPaddleGame
-Created with CodeSandbox
