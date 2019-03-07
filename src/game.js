@@ -44,8 +44,7 @@ class Game {
     }
 
     this.ball.reset();
-
-    // todo - reset scores, paddles...
+    this.scoreBoard.reset();
 
     this.gameObjects = [
       this.ball,
@@ -61,6 +60,7 @@ class Game {
     // check for winner
     if (this.scoreBoard.hasWinner()) {
       this.gamestate = GAMESTATE.WINNER;
+      return;
     }
 
     // ignore update if game is not in play
@@ -69,9 +69,9 @@ class Game {
       this.gamestate === GAMESTATE.MENU ||
       this.gamestate === GAMESTATE.GAMEOVER ||
       this.gamestate === GAMESTATE.WINNER
-    )
+    ) {
       return;
-
+    }
     // update game objects if state runnning or newlevel
     [...this.gameObjects].forEach(object => {
       object.update(deltaTime);

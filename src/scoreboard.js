@@ -2,8 +2,8 @@ class ScoreBoard {
   constructor(game) {
     this.game = game;
 
-    this.scoreLeftPlayer = 9; // save score state in game component???
-    this.scoreRightPlayer = 9; // save score state in game component???
+    this.scoreLeftPlayer = 0; // save score state in game component???
+    this.scoreRightPlayer = 0; // save score state in game component???
 
     this.fontSize = 60;
     this.fontType = "'Press Start 2P'";
@@ -18,6 +18,11 @@ class ScoreBoard {
       x: this.game.gameWidth / 2 + this.fontSize + 30,
       y: this.fontSize + 10
     };
+  }
+
+  reset() {
+    this.scoreLeftPlayer = 0;
+    this.scoreRightPlayer = 0;
   }
 
   hasWinner() {
