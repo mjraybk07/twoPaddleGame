@@ -5,21 +5,33 @@ class Ball {
     this.game = game;
     this.gameWidth = game.gameWidth;
     this.gameHeight = game.gameHeight;
-    //this.image = document.getElementById("img-ball");
+
+    this.speed = { x: -4, y: -3 };
+    this.position = { x: this.game.gameWidth / 2, y: this.game.gameHeight / 2 };
 
     this.size = 14;
     this.radius = this.size / 2;
 
     this.reset();
   }
+  setRandomStartDirection() {
+    const xOptions = [-5, 5];
+    const yOptions = [-3, 3];
 
-  reset() {
-    // add reset condition, position for mid round & player
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
+    let xNew = xOptions[getRandomInt(xOptions.length)];
+    let yNew = yOptions[getRandomInt(yOptions.length)];
 
-    // reset initial position // TODO
-    this.speed = { x: -3, y: -2 };
+    this.speed = { x: xNew, y: yNew };
     this.position = { x: this.game.gameWidth / 2, y: this.game.gameHeight / 2 };
   }
+
+  reset() {
+    this.setRandomStartDirection();
+  }
+
   draw(ctx) {
     ctx.beginPath();
     ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
